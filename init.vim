@@ -32,6 +32,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'glepnir/dashboard-nvim'
+
 call plug#end()
 
 set mouse=a
@@ -177,6 +179,23 @@ let g:gist_open_browser_after_post = 1
 let g:gist_show_privates           = 1
 let g:gist_post_privates           = 1
 let g:gist_clip_command = 'pbcopy'
+
+" Dashboard
+let g:dashboard_default_executive = 'telescope'
+let g:dashboard_custom_header = [
+\ '• ▌ ▄ ·. ▄▄▄ .• ▌ ▄ ·. ▄▄▄ . ▐ ▄ ▄▄▄▄▄          • ▌ ▄ ·.       ▄▄▄  ▪  ',
+\ '·██ ▐███▪▀▄.▀··██ ▐███▪▀▄.▀·•█▌▐█•██  ▪         ·██ ▐███▪▪     ▀▄ █·██ ',
+\ '▐█ ▌▐▌▐█·▐▀▀▪▄▐█ ▌▐▌▐█·▐▀▀▪▄▐█▐▐▌ ▐█.▪ ▄█▀▄     ▐█ ▌▐▌▐█· ▄█▀▄ ▐▀▀▄ ▐█·',
+\ '██ ██▌▐█▌▐█▄▄▌██ ██▌▐█▌▐█▄▄▌██▐█▌ ▐█▌·▐█▌.▐▌    ██ ██▌▐█▌▐█▌.▐▌▐█•█▌▐█▌',
+\ '▀▀  █▪▀▀▀ ▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪ ▀▀▀  ▀█▄▀▪    ▀▀  █▪▀▀▀ ▀█▄▀▪.▀  ▀▀▀▀',
+\]
+let g:dashboard_custom_footer =[
+\ '▐ ▄ ▄▄▄ .       ▌ ▐·▪  • ▌ ▄ ·. ',
+\ '•█▌▐█▀▄.▀·▪     ▪█·█▌██ ·██ ▐███▪',
+\ '▐█▐▐▌▐▀▀▪▄ ▄█▀▄ ▐█▐█•▐█·▐█ ▌▐▌▐█·',
+\ '██▐█▌▐█▄▄▌▐█▌.▐▌ ███ ▐█▌██ ██▌▐█▌',
+\ '▀▀ █▪ ▀▀▀  ▀█▄▀▪. ▀  ▀▀▀▀▀  █▪▀▀▀',
+\]
 
 " Buffer Switching
 map <leader>b :Bufstop<CR>
