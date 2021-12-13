@@ -34,6 +34,8 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'glepnir/dashboard-nvim'
 
+Plug 'wfxr/minimap.vim'
+
 call plug#end()
 
 set mouse=a
@@ -107,6 +109,9 @@ hi IndentGuidesOdd ctermbg=grey
 hi IndentGuidesEven ctermbg=lightgrey
 
 noremap <leader>ig :IndentGuidesToggle<CR>
+
+" Minimap
+noremap <leader>mm :MinimapToggle<CR>
 
 " Sane code tabbing
 set tabstop=2
