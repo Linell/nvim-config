@@ -13,6 +13,8 @@ vim.opt.smartindent = true
 vim.opt.smarttab = true 
 vim.opt.vb = true 
 vim.opt.colorcolumn = '93'
+vim.opt.foldmethod = 'indent'
+vim.opt.foldlevelstart = 4
 -- Searching
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -84,6 +86,23 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  -- Spotify Controller
+  use {
+    'KadoBOT/nvim-spotify', 
+    requires = 'nvim-telescope/telescope.nvim',
+    config = function()
+        local spotify = require'nvim-spotify'
+
+        spotify.setup {
+            -- default opts
+            status = {
+                update_interval = 10000, -- the interval (ms) to check for what's currently playing
+                format = '%s %t by %a' -- spotify-tui --format argument
+            }
+        }
+    end,
+    run = 'make'
+}
   
   -- Simple Packages
   use 'junegunn/vim-easy-align'
@@ -111,16 +130,26 @@ if install_plugins then
   return
 end
 
+-- Easily Resync Configuration
+vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
+
 -- Configure Installed Packages
 
 vim.opt.termguicolors = true
 vim.cmd('colorscheme onedark')
 
+local status = require'nvim-spotify'.status
+status:start()
 require('lualine').setup({
   options = {
     icons_enabled = false,
     section_separators = '',
     component_separators = ''
+  },
+  sections = {
+    lualine_x = {
+      status.listen
+    }
   }
 })
 
@@ -159,6 +188,10 @@ require("indent_blankline").setup {
 vim.keymap.set({''}, 'ig', ':IndentBlanklineToggle<CR>')
 
 require('nvim-treesitter.configs').setup({
+  ensure_installed = { "ruby", "javascript", "typescript" },
+  highlight = {
+    enable = true
+  },
   context_commentstring = {
     enable = true
   }
@@ -238,4 +271,4 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
