@@ -120,6 +120,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
+  use 'tveskag/nvim-blame-line'
 
   if install_plugins then
     require('packer').sync()
@@ -272,3 +273,6 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- Toggle git blame at the end of the line
+vim.keymap.set({''}, 'gb', ':ToggleBlameLine<CR>')
